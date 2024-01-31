@@ -9,6 +9,70 @@ use std::cmp::Ordering;
 fn main() {
 }
 
+fn loops() {
+    let arr_1 = [1, 2, 3, 4];
+    println!("1st : {}", arr_1[0]);
+    println!("Length : {}", arr_1.len());
+
+    let arr_2 = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let mut loop_idx = 0;
+    loop {
+        if arr_2[loop_idx] % 2 == 0 {
+            loop_idx += 1;
+            continue;
+        }
+        if arr_2[loop_idx] == 9 {
+            break;
+        }
+        println!("Val : {}", arr_2[loop_idx]);
+        loop_idx += 1;
+    }
+
+    println!("while loop");
+    let mut idx = 0;
+    while idx < arr_2.len() {
+        println!("Val : {}", arr_2[idx]);
+        idx += 1;
+    }
+
+    println!("for loop");
+    for val in arr_2.iter() {
+        println!("Val : {}", val);
+    }
+}
+
+fn match_function() {
+    let age = 8;
+    if age >= 1 && age <= 18 {
+        println!("Important birthday");
+    } else if (age == 21 || age == 50) {
+        println!("A bit important");
+    } else if (age > 65) {
+        println!("I guess also important birthday");
+    } else {
+        println!("Not important");
+    }
+
+    let can_vote = if age >= 18 {true} else {false};
+    println!("Can vote? {}", can_vote);
+
+    let new_age = 47;
+    match new_age {
+        1..=18 => println!("Important birthday"),
+        21 | 50 => println!("Somewhat important birthday"),
+        65..=i32::MAX => println!("ig also importatnt"),
+        _ => println!("Not important"),
+    }
+
+    let my_age = 68;
+    let voting_age = 18;
+    match my_age.cmp(&voting_age) {
+        Ordering::Less => println!("Can't vote"),
+        Ordering::Greater => println!("CAN vote"),
+        Ordering::Equal => println!("Just got the right"),
+    }
+}
+
 fn math_operators() {
     let is_true = true;
     let my_grade = 'A';
