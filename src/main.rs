@@ -7,6 +7,86 @@ use std::fs::File;
 use std::cmp::Ordering;
 
 fn main() {
+
+}
+
+fn numerated_types() {
+    enum Day {
+        Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+    }
+
+    impl Day {
+        fn is_weekend(&self) -> bool {
+            match self {
+                Day::Saturday | Day::Sunday => true,
+                _ => false
+            }
+        }
+    }
+
+    let today:Day = Day::Monday;
+    match today {
+        Day::Monday => println!("Worst day ever"),
+        Day::Tuesday => println!("Chill day"),
+        Day::Wednesday => println!("Meeting day"),
+        Day::Thursday => println!("Almost Friday"),
+        Day::Friday => println!("Almost weekend"),
+        Day::Saturday => println!("Weekend"),
+        Day::Sunday => println!("Sunday Funday"),
+    }
+
+    println!("Is today the weekend? {}", today.is_weekend());
+}
+
+fn strings() {
+    let mut str = String::new();
+    str.push('A');
+    str.push_str(" word");
+
+    for word in str.split_whitespace() {
+        println!("{}", word);
+    }
+
+    let str2 = str.replace("A", "Another");
+    println!("{}", str2);
+
+
+
+    let str3 = String::from("a d g t gg  t e w");
+    let mut v1: Vec<char> = str3.chars().collect();
+    v1.sort();
+    v1.dedup();
+    for char in v1 {
+        println!("{}", char);
+    }
+
+    // create string literal
+    let str4: &str = "Random string";
+    // convert to heap allocated string
+    let mut str5: String = str4.to_string();
+    println!("{}", str5);
+
+    let byte_arr = str5.as_bytes();
+    // get slice of a string
+    let str6 = &str5[0..=5];
+    println!("String length: {}", str6.len());
+    str5.clear();
+
+    // combine strings
+    let str6 = String::from("Some other string");
+    let str7 = String::from(" rando words lalala");
+    let str8 = str6 + &str7;
+    for ch in str8.chars() {
+        print!("{} ", ch);
+    }
+}
+
+fn tuples() {
+    let some_tuple: (u8, String, f64) = (68, "Dawg".to_string(), 68_000.00);
+    println!("Name : {}", some_tuple.1);
+
+    let (v1, v2, v3) = some_tuple;
+    println!("Age : {}", v1);
 }
 
 fn loops() {
