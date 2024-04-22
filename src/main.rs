@@ -1,30 +1,66 @@
 #![allow(unused)]
 
-use std::io;
 use rand::Rng;
-use std::io::{Write, BufReader, BufRead, ErrorKind};
-use std::fs::File;
 use std::cmp::Ordering;
+use std::fs::File;
+use std::io;
+use std::io::{BufRead, BufReader, ErrorKind, Write};
+
+fn get_sum(x: i32, y: i32) -> i32 {
+    println!("{} + {} = {}", x, y, x + y);
+    x + y
+}
 
 fn main() {
+    println!("Should get res again: {} ", get_sum(5, 4));
+}
 
+fn vectors() {
+    let vec1: Vec<i32> = Vec::new();
+    let mut vec2 = vec![1, 2, 3, 4, 5];
+    vec2.push(6);
+    println!("1st : {}", vec2[0]);
+
+    // verify vector exists
+    let second: &i32 = &vec2[1];
+    match vec2.get(1) {
+        Some(second) => println!("2nd: {}", second),
+        None => println!("No 2nd value"),
+    }
+    // cycle through vector; change val
+    for i in &mut vec2 {
+        // manipulate value
+        *i *= 2;
+    }
+    // verify changes
+    for i in &mut vec2 {
+        println!("Val: {}", i);
+    }
+    println!("Vec Length = {}", vec2.len());
+    println!("Pop : {:?}", vec2.pop());
 }
 
 fn numerated_types() {
     enum Day {
-        Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday
+        Monday,
+        Tuesday,
+        Wednesday,
+        Thursday,
+        Friday,
+        Saturday,
+        Sunday,
     }
 
     impl Day {
         fn is_weekend(&self) -> bool {
             match self {
                 Day::Saturday | Day::Sunday => true,
-                _ => false
+                _ => false,
             }
         }
     }
 
-    let today:Day = Day::Monday;
+    let today: Day = Day::Monday;
     match today {
         Day::Monday => println!("Worst day ever"),
         Day::Tuesday => println!("Chill day"),
@@ -49,8 +85,6 @@ fn strings() {
 
     let str2 = str.replace("A", "Another");
     println!("{}", str2);
-
-
 
     let str3 = String::from("a d g t gg  t e w");
     let mut v1: Vec<char> = str3.chars().collect();
@@ -133,7 +167,7 @@ fn match_function() {
         println!("Not important");
     }
 
-    let can_vote = if age >= 18 {true} else {false};
+    let can_vote = if age >= 18 { true } else { false };
     println!("Can vote? {}", can_vote);
 
     let new_age = 47;
@@ -196,7 +230,8 @@ fn read_input() {
     let greeting = "Nice to meet you";
 
     // save value to name
-    io::stdin().read_line(&mut name)
+    io::stdin()
+        .read_line(&mut name)
         .expect("Didn't get your name");
 
     println!("Hello {}! {}", name.trim_end(), greeting);
