@@ -6,13 +6,22 @@ use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader, ErrorKind, Write};
 
+fn main() {
+    let num_list = vec![1, 2, 3, 4, 5];
+    println!("Sum of list = {}", sum_list(&num_list));
+}
+
+fn sum_list(list: &[i32]) -> i32 {
+    let mut sum = 0;
+    for &val in list.iter() {
+        sum += &val;
+    }
+    sum
+}
+
 fn get_sum(x: i32, y: i32) -> i32 {
     println!("{} + {} = {}", x, y, x + y);
     x + y
-}
-
-fn main() {
-    println!("Should get res again: {} ", get_sum(5, 4));
 }
 
 fn vectors() {
