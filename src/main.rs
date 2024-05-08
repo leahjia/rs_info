@@ -5,10 +5,42 @@ use std::cmp::Ordering;
 use std::fs::File;
 use std::io;
 use std::io::{BufRead, BufReader, ErrorKind, Write};
+use std::ops::Add;
 
 fn main() {
-    let num_list = vec![1, 2, 3, 4, 5];
-    println!("Sum of list = {}", sum_list(&num_list));
+}
+
+fn print_stuff() {
+    let mut str1 = String::from("Leah");
+    let str2 = str1.clone();
+    println!("Hwllo {}", str1);
+
+    // this will block the next call 
+    // print_str(str1);
+
+    // this will block the next call
+    // let str3 = print_return_str(str1);
+    // println!("str3 = {}", str3);
+
+    change_string(&mut str1);
+}
+
+fn print_str(x: String) {
+    println!("A string {}", x);
+}
+
+fn print_return_str(x: String) -> String {
+    println!("A string {}", x);
+    x
+}
+
+fn change_string(name: &mut String) {
+    name.push_str(" is happy");
+    println!("Msg: {}", name);
+}
+
+fn get_sum_gen<T: Add<Output = T>>(x: T, y: T) -> T {
+    return x + y;
 }
 
 fn sum_list(list: &[i32]) -> i32 {
